@@ -1,24 +1,5 @@
 testName: zhangsan123
 spring:
-  application:
-    name: member
-  security:
-    user:
-      name: "admin"
-      password: "admin"
-  cloud:
-    bus:
-      enabled: true
-      trace:
-        enabled: true
-    config:
-      discovery:
-        enabled: true
-        service-id: lezhu-config-server
-      fail-fast: true
-      label: master
-      profile: dev
-      uri: http://localhost:28101/
   ###zipkin服务追踪
   zipkin:
     base-url: http://127.0.0.1:9411/
@@ -31,11 +12,6 @@ spring:
     password: lezhu123456
     port: 6380
     database: 4
-  rabbitmq:
-    host: localhost
-    password: root
-    port: 5672
-    username: root
 management:
   health:
     redis:
