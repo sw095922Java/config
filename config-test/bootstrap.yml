@@ -1,0 +1,66 @@
+server:
+  port: 8667
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+    health-check-url-path: /actuator/health
+    metadata-map:
+      user.name: ${spring.security.user.name}
+      user.password: ${spring.security.user.password}
+  client:
+    registryFetchIntervalSeconds: 5
+    service-url:
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:28001}/eureka/
+spring:
+  application:
+    name: member
+  security:
+    user:
+      name: "admin"
+      password: "admin"
+  cloud:
+    bus:
+      enabled: true
+      trace:
+        enabled: true
+    config:
+      discovery:
+        enabled: true
+        service-id: lezhu-config-server
+      fail-fast: true
+      label: master
+      profile: dev
+      uri: http://localhost:28101/
+  ###zipkin服务追踪
+  zipkin:
+    base-url: http://127.0.0.1:9411/
+  ###采样比例默认的为 0.1可设置介于 0到 1之间，1则表示全部采集
+  sleuth:
+    sampler:
+      probability: 1.0
+  redis:
+    host: 222.187.45.182
+    password: lezhu123456
+    port: 6380
+    database: 4
+  rabbitmq:
+    host: localhost
+    password: root
+    port: 5672
+    username: root
+management:
+  health:
+    redis:
+      enabled: false
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
