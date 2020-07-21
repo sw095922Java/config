@@ -1,4 +1,4 @@
-testName: zhangsan
+testName: zhangsan1
 spring:
   application:
     name: member
